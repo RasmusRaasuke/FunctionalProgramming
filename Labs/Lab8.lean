@@ -79,5 +79,17 @@ def ind_pair (p: (α × β)) : Σ _ : α, β :=
 
 
 -- Task 5
+def vect_to_list (v: Vect α n) : List α :=
+  match v with
+  | .nil => []
+  | .cons x xs => [x] ++ vect_to_list xs
 
+#eval vect_to_list vect1
+#eval vect_to_list vect2
 
+def list_to_vect (xs: List α) : Vect α xs.length :=
+  match xs with
+  | [] => Vect.nil
+  | x :: xs => Vect.cons x (list_to_vect xs)
+
+#check list_to_vect [1, 2, 3]
